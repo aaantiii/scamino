@@ -1,0 +1,183 @@
+{
+  "dialog": {
+    "types": {
+      "game-not-found": {
+        "title": "Spiel bald verfügbar!",
+        "text": "Das ausgewählte Spiel ist noch nicht verfügbar."
+      },
+      "withdraw-success": {
+        "title": "Erfolgreiche Auszahlung!",
+        "text": "Deine Auszahlung war erfolgreich und wird schnellstmöglich von uns bearbeitet."
+      },
+      "deposit-success": {
+        "title": "Erfolgreiche Einzahlung!",
+        "text": "Deine Einzahlung war erfolgreich und wurde deinem Konto gutgeschrieben."
+      },
+      "change-success": {
+        "title": "Daten erfolgreich geändert!",
+        "text": "Deine Änderungen wurden erfolgreich gespeichert."
+      }
+    }
+  },
+  "gameExplorer": {
+    "title": "Unsere Spiele",
+    "noData": "Fehler beim Abrufen der Spiele.",
+    "noSearchResults": "Mit dieser Suchanfrage wurde kein Spiel gefunden."
+  },
+  "dropdownMenu": {
+    "items": [
+      {
+        "text": "Alle Spiele",
+        "icon": "fa-solid fa-gamepad",
+        "link": "/" 
+      },
+      {
+        "text": "Mein Konto",
+        "icon": "fa-regular fa-address-card",
+        "link": "/myaccount" 
+      },
+      {
+        "text": "Einzahlung",
+        "icon": "fa-solid fa-money-bill-transfer",
+        "link": "/myaccount/deposit" 
+      },
+      {
+        "text": "Auszahlung",
+        "icon": "fa-solid fa-hand-holding-dollar",
+        "link": "/myaccount/withdraw" 
+      },
+      {
+        "text": "Spielübersicht",
+        "icon": "fa-solid fa-chart-line",
+        "link": "/myaccount/charts" 
+      },
+      {
+        "text": "Abmelden",
+        "icon": "fa-solid fa-arrow-right-from-bracket",
+        "link": "/auth/logout" 
+      }
+    ]
+  },
+  "promoBanner": {
+    "titleWordsSplitted": [
+      "WILLKOMMENS",
+      "ANGEBOT"
+    ],
+    "text": "Sicher dir jetzt 100% Bonus auf deine erste Einzahlung!"
+  },
+  "footer": {
+    "navigation": [
+      {
+        "title": "Über Scamino",
+        "redirect": "_self",
+        "content": [
+          {
+            "text": "AGBs",
+            "link": "/info/terms"
+          },
+          {
+            "text": "Datenschutzrichtlinie",
+            "link": "/info/privacy"
+          },
+          {
+            "text": "Rückerstattungsrichtlinien",
+            "link": "/info/refund-policy"
+          },
+          {
+            "text": "Responsible Gambling",
+            "link": "/info/responsible-gambling"
+          }
+        ]
+      },
+      {
+        "title": "Casino",
+        "redirect": "_self",
+        "content": [
+          {
+            "text": "Scamino Roulette",
+            "link": "/play?game=deutsches-roulette"
+          },
+          {
+            "text": "Beliebte Slots",
+            "link": "/"
+          },
+          {
+            "text": "Neue Spiele",
+            "link": "/"
+          }
+        ]
+      },
+      {
+        "title": "Spieleprovider",
+        "redirect": "_blank",
+        "content": [
+          {
+            "text": "Gamomat",
+            "link": "https://gamomat.com/"
+          },
+          {
+            "text": "Pragmatic Play",
+            "link": "https://www.pragmaticplay.com/"
+          },
+          {
+            "text": "Play'n go",
+            "link": "https://www.playngo.com/"
+          },
+          {
+            "text": "Red Tiger",
+            "link": "https://www.redtiger.com/"
+          },
+          {
+            "text": "Hacksaw Gaming",
+            "link": "https://www.hacksawgaming.com/"
+          }          
+        ]
+      },
+      {
+        "title": "Hilfe",
+        "redirect": "_self",
+        "content": [
+          {
+            "text": "Impressum",
+            "link": "/info/imprint"
+          },
+          {
+            "text": "FAQ",
+            "link": "/help/faq"
+          },
+          {
+            "text": "Kontakt",
+            "link": "/help/contact"
+          }
+        ]
+      }
+    ],
+    "paymentMethods": [
+      {
+        "path": "/img/payment-methods/visa-mastercard.svg",
+        "name": "Visa | Mastercard",
+        "url": "https://www.mastercard.com"
+      },
+      {
+        "path": "/img/payment-methods/neteller.svg",
+        "name": "Neteller",
+        "url": "https://www.neteller.com"
+      },
+      {
+        "path": "/img/payment-methods/skrill.svg",
+        "name": "Skrill",
+        "url": "https://www.skrill.com"
+      },
+      {
+        "path": "/img/payment-methods/eps-uberweisung.svg",
+        "name": "EPS-Überweisung",
+        "url": "https://www.eps-ueberweisung.at"
+      },
+      {
+        "path": "/img/payment-methods/paysafecard.svg",
+        "name": "Paysafe",
+        "url": "https://www.paysafecard.com"
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "transaction": {
+    "error": {
+      "noPaymentMethodSelected": "Bitte wähle eine Zahlungsmethode aus.",
+      "fillRequiredFields": "Bitte fülle alle Felder mit gültigen Werten aus.",
+      "invalidAmount": "Der Betrag muss zwischen 10 und 10.000 EUR liegen.",
+      "invalidEmail": "Bitte gebe eine gültige E-Mail Addresse ein.",
+      "timeout": "Die Antwort vom Server hat zu lange gedauert.",
+      "rejected": "Unser Transaktionssystem hat deine Transaktion abgelehnt."
+    },
+    "withdraw": {
+      "error": {
+        "notEnoughBalance": "Dein Guthaben reicht für diese Auszahlung nicht aus!",
+        "balanceUnderMinimum": "Dein Guthaben beträgt weniger als die Mindestauszahlung."
+      }
+    }
+  },
+  "personalData": {
+    "error": {
+      "invalidName": "Vor- und Nachname müssen mindestens 2 Buchstaben lang sein.",
+      "invalidPhone": "Bitte gebe eine gültige Telefonnummer mit Landesvorwahl (z. B. +43) ein.",
+      "invalidCountry": "Bitte wähle ein gültiges Land aus der Liste aus.",
+      "invalidZip": "Bitte gebe eine gültige Postleitzahl ein.",
+      "invalidCity": "Die Stadt muss mindestens 2 Buchstaben lang sein.",
+      "invalidStreet": "Bitte gebe eine gültige Strasse mit deiner Hausnummer ein."
+    }
+  }
+}

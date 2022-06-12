@@ -1,0 +1,17 @@
+{
+  "default": {
+    "invalidPassword": "Dein Passwort muss zwischen 8 und 30 Zeichen lang sein.",
+    "invalidEmail": "Bitte gebe eine gültige E-Mail Addresse ein.",
+    "emailNotFound": "Es wurde kein Benutzer mit dieser E-Mail Adresse gefunden."
+  },
+  "register": {
+    "passwordsNotMatch": "Die Passwörter stimmen nicht überein.",
+    "userAlreadyExists": "Ein Benutzer mit dieser E-Mail Adresse existiert bereits."
+  },
+  "login": {
+    "wrongPassword": "E-Mail Adresse und Passwort stimmen nicht überein."
+  },
+  "forgot": {
+    "emailSent": "Eine E-Mail mit dem Link zum ändern des Passworts wurde gesendet."
+  }
+}

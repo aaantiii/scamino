@@ -1,0 +1,16 @@
+#info-box {
+    margin: 5vh 0;
+}
+
+#info-box>h1, #info-box>article>h2 {
+    /* Auf mobilen Geräten Überschriften teilweise zu lang */
+    overflow-wrap: break-word;
+}
+
+#info-box>article>p {
+    text-align: justify;
+}
+
+#info-box>article {
+    margin-top: 3em;
+}

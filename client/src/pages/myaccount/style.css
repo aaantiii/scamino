@@ -1,0 +1,40 @@
+#main-menu {
+  background-color: black;
+  width: 100%;
+  overflow: hidden;
+}
+
+#active-tab {
+  width: 100%;
+  height: 70vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+#main-menu>ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid var(----theme-color);
+}
+
+#main-menu>ul>li.tab {
+  display: inline-block;
+  padding: 15px 5%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#main-menu>ul>li.tab:hover {
+  background-color: var(--theme-color-hover);
+  cursor: pointer;
+}
+
+#main-menu>ul>li.tab.active {
+  background-color: var(--theme-color);
+  min-width: fit-content;
+}

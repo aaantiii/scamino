@@ -1,0 +1,64 @@
+footer {
+    margin-top: 25vh;
+    width: 100%;
+    background-color: black;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+#footer-navigation {
+    border-top: 2px solid var(--theme-color);
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+}
+
+@media (max-width: 1024px) {
+    #footer-navigation {
+        grid-template-columns: repeat(2, 50%);
+    }   
+}
+
+footer>section>div {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+footer>section>div>h3 {
+    margin-top: 3em;
+}
+
+footer>section>div>ul {
+    list-style: none;
+    width: calc(100% - 20px); /* Platz für 10px Margin auf beiden Seiten */
+    padding: 0;  /* Platz für Listenpunkte entfernen */
+    margin: 0 10px;
+}
+
+footer>section>div>ul>li {
+    margin-top: 10px;
+    font-size: 1em;
+    line-height: 1.25em;
+}
+
+footer>section>div>ul>li>a {
+    color: var(--lightgray);
+}
+
+footer>section>div>ul>li>a:hover {
+    color: white;
+}
+
+footer>hr {
+    border: none;
+    margin: 50px 5%;
+    width: 90%;
+    background-color: var(--gray);
+    height: 1px;
+}
+
+#footer-payment-methods>img {
+    width: 12%;
+    max-width: 100px;
+    margin: 0 2%;
+    cursor: pointer;
+}

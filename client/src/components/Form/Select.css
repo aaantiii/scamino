@@ -1,0 +1,14 @@
+form>select {
+  margin-top: 20px;
+}
+
+select {
+  width: 80%;
+  padding-left: 20px;
+  color: white;
+  border-radius: 1.25em;
+  font-size: 1em;
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid var(--theme-color);
+}

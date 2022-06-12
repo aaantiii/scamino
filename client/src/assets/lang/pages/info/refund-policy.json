@@ -1,0 +1,19 @@
+{
+    "title": "Rückerstattungsrichtlinien",
+    "articles": [
+        {
+            "title": "Einzahlungsrückerstattung",
+            "paragraphs": [
+                "Wenn du bei uns eingezahlt hast, kannst du dein Geld nach erfolgreicher Verifizierung jederzeit auszahlen. Sollte dein Konto nicht verifiziert sein, kannst du dies im Menüpunkt \"Verifizieren\" tun.",
+                "Du kannst pro Woche bis zu 3 Auszahlungen gratis durchführen. Jede weitere Auszahlung wird mit einer Transaktionsgebühr von EUR 5 durchgeführt. Auszahlungen können storniert werden, solange sie noch nicht von uns bearbeitet wurden.",
+                "Solltest du bei der Einzahlung ein Konto oder eine Karte einer anderen Person verwenden, behalten wir uns das Recht vor, dein Geld einzubehalten."
+            ]
+        },
+        {
+            "title": "Bonusbedingungen",
+            "paragraphs": [
+                "Wenn du eines unserer Bonusangebote nutzt, wird dein gesamtes Echtgeld zu Bonusgeld. Dieses Geld muss 10x umgesetzt werden, bevor es auszahlbar ist. Der Bonus kann außerdem nicht storniert werden."
+            ]
+        }
+    ]
+}

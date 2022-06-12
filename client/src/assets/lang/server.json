@@ -1,0 +1,9 @@
+{
+  "error": {
+    "unknown": "Ein unbekannter Fehler ist aufgetreten.",
+    "noDataAvailableYet": "Noch keine Daten verfügbar.",
+    "write": "Aufgrund eines Serverfehlers konnten deine Daten nicht gespeichert werden.",
+    "read": "Die Daten konnten nicht vom Server abgerufen werden.",
+    "retry": "Bitte versuche es erneut."
+  }
+}

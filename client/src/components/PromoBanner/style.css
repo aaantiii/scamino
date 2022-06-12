@@ -1,0 +1,62 @@
+#promo-banner {
+    background-color: black;
+    width: 100%;
+    min-height: 250px;
+    padding: 2.5% 0;
+    margin: 150px 0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 2px solid var(--theme-color);
+    user-select: none;
+    overflow: hidden;
+    background: url('promo-banner-scamino.jpg') no-repeat black;
+    background-size: 110%;
+    background-position: center;
+}
+
+#promo-banner>article {
+    max-width: 40%;
+    padding: 40px;   
+}
+
+#promo-banner>article>h2 {
+    font-size: 2em;
+    margin: 0;
+    text-shadow: .1em .1em rgba(0, 0, 0, .5);
+}
+
+#promo-banner>article>h2>span {
+    color: var(--theme-color);
+}
+
+#promo-banner>article>p {
+    font-size: 1.25em;
+    margin: 10px 0 0;
+}
+
+@media (max-width: 1024px) {
+    #promo-banner {
+        background-position: top;
+        background-size: 115%;
+    }
+    #promo-banner>article {
+        padding: 20px 40px;
+        max-width: 60%;
+    }
+}
+
+@media (max-width: 768px) {
+    #promo-banner {
+        min-height: 45vh;
+        align-items: flex-end;
+    }
+    #promo-banner>article {
+        padding: 40px;
+        max-width: 80%;
+    }
+    #promo-banner>article>h2 {
+        word-wrap: break-word;
+    }
+}

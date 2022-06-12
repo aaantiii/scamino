@@ -1,0 +1,6 @@
+{
+  "bet": {
+    "balanceTooLow": "Du hast nicht genug Guthaben.",
+    "chooseStake": "Bitte wähle einen Wetteinsatz aus."
+  }
+}

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Russo+One&display=swap');
+
+:root {
+  --nav-element-height: 40px;
+  --nav-element-spacing: 15px;
+  --default-green-rgb: 0, 150, 0;
+  --default-green-hex:#009600;
+  --theme-rgb: var(--default-green-rgb);
+  --theme-color: rgb(var(--theme-rgb));
+  --theme-color-hover: rgba(var(--theme-rgb), .7);
+  --gray: #303030;
+  --lightgray: #707070;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px; /* für horizontale Scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--theme-color-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--gray);
+  font-size: 1em;
+  color: white;
+  min-height: 100vh;
+  position: relative;   /* für absolut Positionierung footer */
+}
+
+button:hover, a:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#content-wrap {
+  margin-top: 60px;
+  width: 70%;
+  padding-bottom: 50vh;
+  max-width: 1500px;
+}
+
+@media screen and (max-width: 1024px) {
+  #content-wrap {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #content-wrap {
+    width: 90%;
+  }
+}
+
+.content-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+::selection {
+  background-color: var(--theme-color);
+  color: white;
+}
+
+input:-internal-autofill-previewed {
+  font-size: 22px !important;
+}

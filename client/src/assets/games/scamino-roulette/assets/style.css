@@ -1,0 +1,174 @@
+:root {
+    --roulette-number-height: 75px;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    min-height: 600px;
+    user-select: none;
+    position: relative;
+}
+
+#wheel-container {
+    width: 100%;
+    border: 1px solid var(--theme-color);
+    margin-top: 50px;
+    height: 80px;
+    background: linear-gradient(90deg, rgba(30, 30, 30, .6), rgba(var(--theme-rgb), .3) 50%, rgba(30, 30, 30, .6));
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+#wheel {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.number-element {
+    height: var(--roulette-number-height);
+    width: var(--roulette-number-height);
+    text-align: center;
+    line-height: var(--roulette-number-height);
+    font-size: 1.5em;
+    border-radius: 15px;
+    box-shadow: 5px 5px rgba(30, 30, 30, .4);
+}
+
+#stopper {
+    width: 2px;
+    height: 100%;
+    background-color: var(--theme-color);
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+}
+
+#win-message {
+    margin-top: 5px;
+    color: var(--theme-color);
+    font-size: 1.25em;
+}
+
+#time {
+    margin-top: 15px;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 1.75em;
+    background-color: var(--theme-color);
+}
+
+#betting-table {
+    width: 85%;
+    min-width: 300px;
+    max-width: 500px;
+    height: 250px;
+    background: rgba(var(--theme-rgb), .2);
+    border: 1px solid var(--theme-color);
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    flex-direction: column;
+}
+
+#message-box {
+    font-size: 1em;
+    border-radius: .5em;
+    margin-top: 5px;
+    width: 85%;
+    text-align: center;
+}
+
+#cover-betting-table {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: .3;
+    z-index: 1000;
+}
+
+#betting-buttons {
+    display: grid;
+    grid-template-columns: repeat(8, calc(100% / 8));
+    height: fit-content;
+    width: 90%;
+    margin-top: 20px;
+    max-width: 400px;
+}
+
+.betting-button {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    max-width: 60px;
+    max-height: 60px;
+    border: 1px solid white;
+    font-size: 1.25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.betting-button:hover {
+    opacity: .6;
+}
+
+.betting-button.green {
+    background: var(--theme-color);
+    grid-row: span 2;
+    height: 100%;
+    max-height: 122px;
+    line-height: 100px; 
+}
+
+.betting-button.black {
+    background: black;
+}
+
+.betting-button.red {
+    background: red;
+}
+
+#stake-coins {
+    gap: 10px;
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    width: 85%;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.coin {
+    width: 15%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 45px;
+    max-height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.coin.selected {
+    background: rgba(199, 186, 4, .4);
+    max-width: 55px;
+    max-height: 55px;
+    padding: 5px;
+}

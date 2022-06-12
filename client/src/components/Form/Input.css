@@ -1,0 +1,46 @@
+form>input {
+  width: 75%;
+  margin-top: 20px;
+}
+
+input {
+  background-color: var(white);
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid var(--theme-color);
+  padding-left: 20px;
+  color: white;
+  border-radius: 1.25em;
+  font-size: 1em;
+}
+
+input:invalid {
+  border: 1px solid red;
+}
+
+input:disabled {
+  border: 1px solid var(--lightgray);
+  cursor: not-allowed
+}
+
+input:disabled::placeholder {
+  opacity: .6;
+}
+
+input::placeholder {
+  color: var(--lightgray);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 1000px var(--gray) inset; /* Chrome autocomplete Farbe überdecken */
+  -webkit-text-fill-color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

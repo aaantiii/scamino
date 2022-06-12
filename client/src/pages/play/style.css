@@ -1,0 +1,13 @@
+#game-container {
+  aspect-ratio: 1280 / 768;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  #game-container {
+    min-height: 70vh;
+  }
+}

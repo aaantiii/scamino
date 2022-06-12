@@ -95,7 +95,12 @@ button.show-more {
 
 .bet-info-table>tfoot>tr>td,
 .bet-info-table>tfoot>tr>th {
-  border: 1px solid var(--gray) !important;
+  border: 1px solid var(--gray);
+  border-right: none;
+}
+
+.bet-info-table>tfoot>tr>td:last-child {
+  border-right: 1px solid var(--gray);
 }
 
 .roulette-number-circle {

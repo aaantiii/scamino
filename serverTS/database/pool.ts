@@ -23,19 +23,19 @@ const pool = createPool({
   database: process.env.DB_NAME
 })
 
-function tryConnection() {
+function testPoolConnection() {
   pool.getConnection((err, con) => {
     if (err) {
-      console.error(`Datenbank auf Port ${process.env.DB_PORT} nicht erreichbar. Wird in 15 Sekunden erneut versucht...`)
-      return setTimeout(tryConnection, 15000)
+      console.log(`Datenbank auf Port ${process.env.DB_PORT} nicht erreichbar. Wird in 15 Sekunden erneut versucht...`)
+      return setTimeout(testPoolConnection, 15000)
     }
   
     con.release()
     setGameList()
-    console.log(`Datenbank erreichbar (PORT: ${process.env.DB_PORT}).`)
+    console.log(`Datenbank auf Port ${process.env.DB_PORT} erreichbar.`)
   })
 }
 
-tryConnection()
+testPoolConnection()
 
 export default pool

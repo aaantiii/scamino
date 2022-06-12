@@ -1,4 +1,3 @@
-// Hallo
 import { config } from 'dotenv'
 config()
 

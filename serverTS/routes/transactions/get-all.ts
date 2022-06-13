@@ -7,7 +7,7 @@ export function getTransactions(req: any, res: any) {
   if (!userId)
     return res.send({ success: false })
 
-  Controller.selectAll<Scamino.Transaction>('transactions', 'userId', userId, 'id', 'DESC')
+  Controller.selectAllWhere<Scamino.Transaction>('transactions', 'userId', userId, 'id', 'DESC')
   .then(transactions => {
     if (transactions) {
       transactions.forEach(transaction => {

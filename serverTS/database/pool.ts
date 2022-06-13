@@ -1,5 +1,5 @@
-import { createPool } from 'mysql'
-import { setGameList } from '../routes/casino/games/get-all'
+import { createPool } from 'mysql2'
+import { refreshGameList } from '../routes/casino/games/get-all'
 
 // Objekt als Parameter statt Array verwenden
 // https://github.com/mysqljs/mysql#custom-format
@@ -13,14 +13,25 @@ function objectParamsFormat (query: string, params: object): string {
   }.bind(this))
 }
 
+// Bei mysql2 wird type NEWDECIMAL immer als String zurückgegeben
+// --> wird in dieser Funktion wieder in Nummer konvertiert
+function castNewDecimal(field: any, next: any) {
+  if (field.type === 'NEWDECIMAL') {
+    var value = field.string();
+    return (value === null) ? null : Number(value);
+  }
+  return next();
+}
+
 const pool = createPool({
   queryFormat: objectParamsFormat,
-  connectionLimit: 10,
+  typeCast: castNewDecimal,
+  database: process.env.DB_NAME,
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT),
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT)
 })
 
 function testPoolConnection() {
@@ -31,7 +42,7 @@ function testPoolConnection() {
     }
   
     con.release()
-    setGameList()
+    refreshGameList()
     console.log(`Datenbank auf Port ${process.env.DB_PORT} erreichbar.`)
   })
 }

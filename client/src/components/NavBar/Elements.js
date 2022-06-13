@@ -8,8 +8,10 @@ export default function Elements() {
   // Wenn UserInfo geändert wird balance aktualisieren
   useEffect(() => {
     const balanceLabel = document.querySelector('#balance-label')
-    if (balanceLabel && userInfo)
-      balanceLabel.innerHTML = userInfo.balance?.toFixed(2) + ' EUR'
+    if (balanceLabel && userInfo) {
+      balanceLabel.innerHTML = userInfo.balance.toFixed(2) + ' EUR'
+    } 
+      
   }, [userInfo])
 
   // Wenn Benutzer angemeldet ist Menü und Guthaben anzeigen

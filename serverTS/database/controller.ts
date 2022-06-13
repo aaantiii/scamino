@@ -87,7 +87,7 @@ class Controller {
           return reject(conErr)
 
         con.query(`SELECT * FROM ${table} WHERE ${keyName} = :keyValue;`, { keyValue },
-        (err, data) => {
+        (err, data: any[]) => {
           if (err)
             reject(err)
 
@@ -98,7 +98,16 @@ class Controller {
     })
   }
 
-  static selectAll<T>(table: string, keyName: string, keyValue: string | number, orderKeyName: string, order: string) {
+  /**
+   * Selektiert alle Zeilen bei welchen die Spalte keyName den Wert keyValue hat
+   * @param table Name der Tabelle aus welcher selektiert werden soll
+   * @param keyName Spaltenname der WHERE Condition
+   * @param keyValue Wert von keyName
+   * @param orderKeyName Spaltenname der zum sortieren des Ergebnis verwendet werden soll
+   * @param order ASC / DESC
+   * @returns Eine Array vom Typ T
+   */
+  static selectAllWhere<T>(table: string, keyName: string, keyValue: string | number, orderKeyName: string, order: string) {
     return new Promise<T[]>((resolve, reject) => {
       pool.getConnection((conErr, con) => {
         if (conErr) {
@@ -107,7 +116,7 @@ class Controller {
         }
 
         con.query(`SELECT * FROM ${table} WHERE ${keyName} = :keyValue ORDER BY ${orderKeyName} ${order};`, { keyValue },
-        (err, data) => {
+        (err, data: any[]) => {
           if (err)
             reject(err)
 
@@ -118,6 +127,15 @@ class Controller {
     })
   }
 
+  /**
+   * Left joined zwei Tabellen miteinander
+   * @param leftTable Die linke Tabelle des Joins
+   * @param rightTable Die rechte Tabelle des Joins
+   * @param leftKeyName Der (Fremd-)Schlüssel der linken Tabelle
+   * @param rightKeyName Der (Fremd-)Schlüssel der rechten Tabelle
+   * @param selectedValues Array der Spaltennamen welche von den jeweiligen Tabellen selektiert werden sollen
+   * @returns Eine Array vom Typ T
+   */
   static selectSpecificJoinLeft<T>(leftTable: string, rightTable: string, leftKeyName: string | number, rightKeyName: string | number, selectedValues: string[]) {
     return new Promise<T[]>((resolve, reject) => {
       pool.getConnection((conErr, con) => {
@@ -125,7 +143,7 @@ class Controller {
           return reject(conErr)
 
         con.query(`SELECT ${selectedValues} FROM ${leftTable} LEFT JOIN ${rightTable} ON ${leftTable}.${leftKeyName} = ${rightTable}.${rightKeyName};`,
-        (mysqlErr, data) => {
+        (mysqlErr, data: any[]) => {
           if (mysqlErr) 
             reject(mysqlErr)
 

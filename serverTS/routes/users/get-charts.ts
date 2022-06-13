@@ -7,8 +7,8 @@ export async function getChartData(req: any, res: any) {
   if (!userId)
     return res.send({ success: false })
 
-  const bets = await Controller.selectAll<Scamino.RouletteBet>('bets', 'userId', userId, 'id', 'DESC')
-  const transactions = await Controller.selectAll<Scamino.Transaction>('transactions', 'userId', userId, 'id', 'DESC')
+  const bets = await Controller.selectAllWhere<Scamino.RouletteBet>('bets', 'userId', userId, 'id', 'DESC')
+  const transactions = await Controller.selectAllWhere<Scamino.Transaction>('transactions', 'userId', userId, 'id', 'DESC')
 
   if (!bets || !transactions)
     return res.send({ success: false })

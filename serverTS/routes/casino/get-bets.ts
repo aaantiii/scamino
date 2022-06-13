@@ -5,7 +5,7 @@ import Scamino from '../../lib/types'
 export function getBetHistory(req: any, res: any) {
   const { userId }: { userId: number } = req.query
 
-  Controller.selectAll<Scamino.RouletteBet>('bets', 'userId', userId, 'id', 'DESC')
+  Controller.selectAllWhere<Scamino.RouletteBet>('bets', 'userId', userId, 'id', 'DESC')
   .then(bets => {
     if (!bets)
       return res.send({ success: false })

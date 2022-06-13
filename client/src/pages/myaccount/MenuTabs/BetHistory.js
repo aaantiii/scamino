@@ -35,7 +35,6 @@ export default function BetHistory() {
       setMoreInfoTab()
     }
 
-    const tipsObject = JSON.parse(bet.tips)
     const [date, time] = bet.dateString.split(' ')
 
     let keyVal = .354613
@@ -56,14 +55,14 @@ export default function BetHistory() {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(tipsObject).map(key =>
+              {Object.keys(bet.tips).map(key =>
                 <tr key={keyVal++}>
                   <td>
                     <span style={{ backgroundColor: getNumberColor(key) }}
                       className="roulette-number-circle">{key}</span>
                   </td>
-                  <td>{tipsObject[key].toFixed(2)} EUR</td>
-                  <td>{(tipsObject[key] * 14).toFixed(2)} EUR</td>
+                  <td>{bet.tips[key].toFixed(2)} EUR</td>
+                  <td>{(bet.tips[key] * 14).toFixed(2)} EUR</td>
                 </tr>
               )}
             </tbody>
@@ -98,7 +97,7 @@ export default function BetHistory() {
               </tr>
               <tr>
                 <th>Gewinnchance:</th>
-                <td>{Math.ceil(Object.keys(tipsObject).length / 15 * 100)} %</td>
+                <td>{Math.ceil(Object.keys(bet.tips).length / 15 * 100)} %</td>
               </tr>
               <tr>
                 <th>Datum:</th>

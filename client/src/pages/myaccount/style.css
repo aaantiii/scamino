@@ -18,7 +18,7 @@
   margin: 0;
   display: flex;
   flex-direction: row;
-  border-bottom: 2px solid var(----theme-color);
+  border-bottom: 2px solid var(--theme-color);
 }
 
 #main-menu>ul>li.tab {

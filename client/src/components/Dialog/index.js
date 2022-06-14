@@ -1,7 +1,7 @@
+import './style.css'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import components from '../../assets/lang/components.json'
-import './style.css'
 
 export default function Dialog() {
   const [searchParams, setSearchParams] = useSearchParams(),
@@ -12,25 +12,20 @@ export default function Dialog() {
     setContent(components.dialog.types[searchParams.get('dialog')])
   }, [searchParams])
 
-  //Wenn sich der Content des Dialogs ändert Dialog anzeigen
+  // Wenn sich der Content des Dialogs ändert Dialog anzeigen
   useEffect(() => {
-    const dialog = document.querySelector('dialog')
-    
-    if (dialog) {
-      document.querySelector('body').style.overflow = 'hidden'
-      dialog.showModal()
-    }
+    if (!content) return
+
+    document.querySelector('body').style.overflow = 'hidden'
+    document.querySelector('dialog').showModal()
   }, [content])
 
   function closeDialog() {
-    document.querySelector('dialog').close()
-
-    // Scrollen aktivieren
-    document.querySelector('body').style.overflow = 'auto'
-
-    // Parameter aus URL entfernen
     searchParams.delete('dialog')
     setSearchParams(searchParams)
+
+    document.querySelector('dialog').close()
+    document.querySelector('body').style.overflow = 'auto'
   }
 
   if (!content)

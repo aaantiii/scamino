@@ -5,7 +5,7 @@ import startRound from './assets/spin'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../../components/AuthContext'
 
-const timeToNextSpin = 20
+const timeToNextSpin = 10
 
 export default function Roulette() {
   const [time, setTime] = useState(timeToNextSpin),

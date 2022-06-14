@@ -39,7 +39,7 @@ function animateSpin(roll, win) {
   // der Stopper irgendwo dazwischen landet
   transformX += Math.random() * rolledNumberElement.clientWidth
 
-  wheel.style.transform = 'none' //Auf Standardposition zurücksetzen
+  wheel.style.transform = 'none' // Auf Standardposition zurücksetzen
   const keyframes = [
     { transform: 'none' },
     { transform: `translateX(-${transformX}px)` }
@@ -53,8 +53,7 @@ function animateSpin(roll, win) {
       wheel.style.transform = `translateX(-${transformX}px)`
       resolve({ win })
     })
-    animation.addEventListener('cancel', () => {
-      reject()
-    })
-  }).catch(err => console.log(err))
+    animation.addEventListener('cancel', () => reject())
+  })
+  .catch(err => console.log(err))
 }

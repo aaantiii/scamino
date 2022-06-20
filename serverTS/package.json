@@ -17,6 +17,5 @@
   "scripts": {
     "start": "ts-node index.ts"
   },
-  "type": "commonjs",
-  "types": "index.d.ts"
+  "type": "commonjs"
 }

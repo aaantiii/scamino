@@ -34,7 +34,7 @@ const pool = createPool({
   connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT)
 })
 
-const defaultMessage = `MySQL Datenbank auf Port ${process.env.DB_PORT} `
+const defaultMessage = `MySQL Datenbank auf Port ${process.env.DB_PORT}`
 function testPoolConnection() {
   pool.getConnection((err, con) => {
     if (err) {

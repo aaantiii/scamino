@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react'
 
 // Inputfelder für die verschiendene Zahlungsmethoden
 // Pattern von stackoverflow & w3
-const inputName = <Input id="name" key="name" placeholder="Vollständiger Name"
-                         type="text" pattern="^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$" />,
+const
+inputName = <Input id="name" key="name" placeholder="Vollständiger Name"
+                   type="text" pattern="^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$" />,
 
 inputEmail = <Input id="email" key="email" type="email" placeholder="E-Mail" />,
 
@@ -19,7 +20,7 @@ inputCVV = <Input id="cvv" key="cvv" onChange={allowNumbersOnly} placeholder="CV
 inputPin = <Input id="pin" key="pin" onChange={allowNumbersOnly} placeholder="PIN" type="text"
                   inputmode="numeric" maxLength="6" pattern="^\d{6}$" />
 
-//Nur Zahlen erlauben
+// Funktion um nur Zahlen als Eingabe zu erlauben
 function allowNumbersOnly(e) {
   const value = e.target.value.split('')
   const valueNumbersOnly = []

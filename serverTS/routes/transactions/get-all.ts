@@ -1,5 +1,5 @@
 import Controller from '../../database/controller'
-import { getDefaultDateString } from '../../lib/default-formats'
+import { toDefaultDateTimeString } from '../../lib/default-formats'
 import Scamino from '../../lib/types'
 
 export function getTransactions(req: any, res: any) {
@@ -11,7 +11,7 @@ export function getTransactions(req: any, res: any) {
   .then(transactions => {
     if (transactions) {
       transactions.forEach(transaction => {
-        transaction.dateString = getDefaultDateString(transaction.date)
+        transaction.dateString = toDefaultDateTimeString(transaction.date)
 
         delete transaction.date
         delete transaction.userId
@@ -19,8 +19,5 @@ export function getTransactions(req: any, res: any) {
       res.send({ transactions, success: true })
     }
   })
-  .catch((err) => {
-    res.send({ success: false })
-    console.log(err)
-  })
+  .catch(() => res.send({ success: false }))
 }

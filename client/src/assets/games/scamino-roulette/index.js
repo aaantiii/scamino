@@ -5,10 +5,10 @@ import startRound from './assets/spin'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../../components/AuthContext'
 
-const timeToNextSpin = 10
+const secondsPerRound = localStorage.getItem('roulette-duration') || 20
 
 export default function Roulette() {
-  const [time, setTime] = useState(timeToNextSpin),
+  const [time, setTime] = useState(secondsPerRound),
         [message, setMessage] = useState(''),
         { userInfo, refreshUserInfo } = useAuth()
 
@@ -25,7 +25,7 @@ export default function Roulette() {
         return setTimeout(() => setTime(time - 1), 1000)
       
       if (bets.length === 0) {
-        setTime(timeToNextSpin)
+        setTime(secondsPerRound)
         return setMessage('Warte auf Einsätze...')
       }
 
@@ -43,7 +43,7 @@ export default function Roulette() {
       clearBets()
 
       bettingTableCover.style.display = 'none'
-      setTime(timeToNextSpin)
+      setTime(secondsPerRound)
     }
     tick()
   }, [time, setTime, userInfo, refreshUserInfo])

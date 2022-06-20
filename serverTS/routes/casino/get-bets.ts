@@ -1,5 +1,5 @@
 import Controller from '../../database/controller'
-import { getDefaultDateString } from '../../lib/default-formats'
+import { toDefaultDateTimeString } from '../../lib/default-formats'
 import Scamino from '../../lib/types'
 
 export function getBetHistory(req: any, res: any) {
@@ -12,7 +12,7 @@ export function getBetHistory(req: any, res: any) {
  
     bets.forEach(bet => {
       delete bet.userId
-      bet.dateString = getDefaultDateString(bet.date)
+      bet.dateString = toDefaultDateTimeString(bet.date)
     })
     res.send({ success: true, bets })
   })

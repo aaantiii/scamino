@@ -24,7 +24,7 @@ export function createRouletteBet(req: any, res: any) {
       roll
     }
 
-    let tipsMap = new Map()
+    let tipsMap = new Map<number, number>()
     bets.forEach(bet => {
       if (bet.tip === roll)
         rouletteBet.win += bet.stake * 14

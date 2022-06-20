@@ -14,13 +14,13 @@ function objectParamsFormat (query: string, params: object): string {
 }
 
 // Bei mysql2 wird type NEWDECIMAL immer als String zurückgegeben
-// --> wird in dieser Funktion wieder in Nummer konvertiert
-function castNewDecimal(field: any, next: any) {
+// --> wird in dieser Funktion wieder in Nummer umgewandelt
+function castNewDecimal(field: any, next: Function) {
   if (field.type === 'NEWDECIMAL') {
-    var value = field.string();
-    return (value === null) ? null : Number(value);
+    const value = field.string()
+    return (value === null) ? null : Number(value)
   }
-  return next();
+  return next()
 }
 
 const pool = createPool({
@@ -34,16 +34,17 @@ const pool = createPool({
   connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT)
 })
 
+const defaultMessage = `MySQL Datenbank auf Port ${process.env.DB_PORT} `
 function testPoolConnection() {
   pool.getConnection((err, con) => {
     if (err) {
-      console.log(`Datenbank auf Port ${process.env.DB_PORT} nicht erreichbar. Wird in 15 Sekunden erneut versucht...`)
+      console.log(`${defaultMessage} nicht erreichbar. Wird in 15 Sekunden erneut versucht...`)
       return setTimeout(testPoolConnection, 15000)
     }
   
     con.release()
     refreshGameList()
-    console.log(`Datenbank auf Port ${process.env.DB_PORT} erreichbar.`)
+    console.log(`${defaultMessage} erreichbar.`)
   })
 }
 

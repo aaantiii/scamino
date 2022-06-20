@@ -28,6 +28,7 @@ export default function AccountSettings() {
         newUserInfoDeferred = useDeferredValue(newUserInfo),
         [error, setError] = useState(''),
         [changeButtonDisabled, setChangeButtonDisabled] = useState(true),
+        [rouletteRoundDuration, setRouletteRoundDuration] = useState(localStorage.getItem('roulette-duration')),
         [selectedHexColor, setSelectedHexColor] = useState(),
         selectedHexColorDeferred = useDeferredValue(selectedHexColor),
         [searchParams, setSearchParams] = useSearchParams()
@@ -93,14 +94,10 @@ export default function AccountSettings() {
 
   // input Farbe auf gespeichertes Theme setzen
   useEffect(() => {
-    let themeHexColor = defaultThemeHex
-    const storedHexColor = localStorage.getItem('theme-hex')
+    const storedHexColor = localStorage.getItem('theme-hex') || defaultThemeHex
 
-    if (storedHexColor)
-      themeHexColor = storedHexColor
-
-    setSelectedHexColor(themeHexColor)      
-    document.querySelector('input[type="color"]').value = themeHexColor
+    setSelectedHexColor(storedHexColor)      
+    document.querySelector('input[type="color"]').value = storedHexColor
   }, [])
 
   // Theme bei Änderung von inputHexColor speichern und updaten
@@ -108,20 +105,38 @@ export default function AccountSettings() {
     if (!selectedHexColorDeferred) return
 
     localStorage.setItem('theme-hex', selectedHexColorDeferred)
-    window.refreshTheme()
+    window.reloadTheme()
   }, [selectedHexColorDeferred])
 
   function resetTheme() {
-    const icon = document.querySelector('.reset-theme-button>i')
-    const keyframes = [
+    document.querySelector('.icon-button.reset-theme>i').animate([
       { transform: 'rotate(0deg) scaleX(-1)' },
       { transform: 'rotate(-360deg) scaleX(-1)' }
-    ]
-    icon.animate(keyframes, { easing: 'linear', duration: 200 })
+    ], { easing: 'linear', duration: 200 })
 
     document.querySelector(':root').style.setProperty('--theme-rgb', 'var(--default-green-rgb')
     localStorage.removeItem('theme-hex')
     document.querySelector('input[type="color"]').value = defaultThemeHex
+  }
+
+  useEffect(() => {
+    if (!rouletteRoundDuration) return
+
+    document.querySelector('#roulette-round-duration').value = rouletteRoundDuration
+  }, [rouletteRoundDuration])
+
+  function changeRouletteDuration(e) {
+    if (rouletteRoundDuration < 5 || rouletteRoundDuration > 100)
+      return setRouletteRoundDuration(rouletteRoundDuration)
+
+    document.querySelector('.icon-button.roulette-round-duration>i').animate([
+      { transform: 'scale(1)', color: 'green' },
+      { transform: 'scale(1.4)' },
+      { transform: 'scale(1)' }
+    ], { easing: 'linear', duration: 250 })
+
+    setRouletteRoundDuration(rouletteRoundDuration)
+    localStorage.setItem('roulette-duration', rouletteRoundDuration)
   }
 
   return (
@@ -162,13 +177,22 @@ export default function AccountSettings() {
       </div>
       <div id="page-settings">
         <h2>Personalisierung</h2>
-        <div>
-          <label htmlFor="color-picker">Akzentfarbe: </label>
-          <input id="color-picker" type="color" onChange={(e) => setSelectedHexColor(e.target.value)} />
-          <div className="reset-theme-button" onClick={resetTheme}>
+        <section>
+          <label htmlFor="roulette-round-duration">Roulette Rundendauer:</label>
+          <div className="icon-button roulette-round-duration" onClick={changeRouletteDuration}>
+            <i className="fa-solid fa-check"></i>
+          </div>
+          <input id="roulette-round-duration" type="number" min="5" max="100" minLength="1" maxLength="3"
+                 onChange={e => setRouletteRoundDuration(e.target.value)} />
+          <span>Sekunden</span>
+        </section>
+        <section>
+          <label htmlFor="color-picker">Akzentfarbe:</label>
+          <input id="color-picker" type="color" onChange={e => setSelectedHexColor(e.target.value)} />
+          <div className="icon-button reset-theme" onClick={resetTheme}>
             <i className="fa-solid fa-rotate-right" />
           </div>
-        </div>
+        </section>
       </div>
     </div>
   )

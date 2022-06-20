@@ -29,6 +29,6 @@ app.post('/transactions/withdraw', transactions.createWithdrawal)
 app.post('/transactions/deposit', transactions.createDeposit)
 
 
-app.listen(process.env.PORT, () => {
-  console.log('HTTP Server bereit.')
+app.listen(process.env.HTTP_PORT, () => {
+  console.log(`HTTP Server auf Port ${process.env.HTTP_PORT} bereit.`)
 })

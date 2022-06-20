@@ -80,6 +80,13 @@ class Controller {
     })
   }
 
+  /**
+   * Gibt einen einzigen Datensatz aus der entsprechenden Tabelle zurück
+   * @param table
+   * @param keyName 
+   * @param keyValue 
+   * @returns 
+   */
   static selectOne<T>(table: string, keyName: string, keyValue: string | number) {
     return new Promise<T>((resolve, reject) => {
       pool.getConnection((conErr, con) => {
@@ -103,19 +110,17 @@ class Controller {
    * @param table Name der Tabelle aus welcher selektiert werden soll
    * @param keyName Spaltenname der WHERE Condition
    * @param keyValue Wert von keyName
-   * @param orderKeyName Spaltenname der zum sortieren des Ergebnis verwendet werden soll
-   * @param order ASC / DESC
+   * @param orderColumnName Spaltenname der zum Sortieren des Ergebnis verwendet werden soll
+   * @param order ASC | DESC
    * @returns Eine Array vom Typ T
    */
-  static selectAllWhere<T>(table: string, keyName: string, keyValue: string | number, orderKeyName: string, order: string) {
+  public static selectAllWhere<T>(table: string, keyName: string, keyValue: string | number, orderColumnName: string, order: string) {
     return new Promise<T[]>((resolve, reject) => {
       pool.getConnection((conErr, con) => {
-        if (conErr) {
-          con.release()
+        if (conErr)
           return reject(conErr)
-        }
 
-        con.query(`SELECT * FROM ${table} WHERE ${keyName} = :keyValue ORDER BY ${orderKeyName} ${order};`, { keyValue },
+        con.query(`SELECT * FROM ${table} WHERE ${keyName} = :keyValue ORDER BY ${orderColumnName} ${order};`, { keyValue },
         (err, data: any[]) => {
           if (err)
             reject(err)
@@ -133,16 +138,16 @@ class Controller {
    * @param rightTable Die rechte Tabelle des Joins
    * @param leftKeyName Der (Fremd-)Schlüssel der linken Tabelle
    * @param rightKeyName Der (Fremd-)Schlüssel der rechten Tabelle
-   * @param selectedValues Array der Spaltennamen welche von den jeweiligen Tabellen selektiert werden sollen
+   * @param selectedColumns Array der Spaltennamen welche von den jeweiligen Tabellen selektiert werden sollen
    * @returns Eine Array vom Typ T
    */
-  static selectSpecificJoinLeft<T>(leftTable: string, rightTable: string, leftKeyName: string | number, rightKeyName: string | number, selectedValues: string[]) {
+  static selectSpecificJoinLeft<T>(leftTable: string, rightTable: string, leftKeyName: string | number, rightKeyName: string | number, selectedColumns: string[]) {
     return new Promise<T[]>((resolve, reject) => {
       pool.getConnection((conErr, con) => {
         if (conErr)
           return reject(conErr)
 
-        con.query(`SELECT ${selectedValues} FROM ${leftTable} LEFT JOIN ${rightTable} ON ${leftTable}.${leftKeyName} = ${rightTable}.${rightKeyName};`,
+        con.query(`SELECT ${selectedColumns} FROM ${leftTable} LEFT JOIN ${rightTable} ON ${leftTable}.${leftKeyName} = ${rightTable}.${rightKeyName};`,
         (mysqlErr, data: any[]) => {
           if (mysqlErr) 
             reject(mysqlErr)

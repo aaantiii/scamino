@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 13. Jun 2022 um 22:13
+-- Erstellungszeit: 14. Jun 2022 um 22:15
 -- Server-Version: 8.0.29
 -- PHP-Version: 8.1.1
 
@@ -36,14 +36,6 @@ CREATE TABLE `bets` (
   `roll` tinyint NOT NULL,
   `tips` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Daten für Tabelle `bets`
---
-
-INSERT INTO `bets` (`id`, `userId`, `amount`, `date`, `win`, `roll`, `tips`) VALUES
-(1, 2, '75.00', '2022-06-13 19:30:01', '70.00', 0, '{\"0\": 5, \"1\": 15, \"3\": 10, \"6\": 15, \"7\": 10, \"8\": 10, \"9\": 10}'),
-(2, 2, '100.00', '2022-06-13 20:11:09', '0.00', 5, '{\"0\": 10, \"1\": 15, \"2\": 10, \"3\": 10, \"4\": 10, \"6\": 10, \"7\": 15, \"8\": 10, \"9\": 10}');
 
 -- --------------------------------------------------------
 
@@ -145,16 +137,6 @@ CREATE TABLE `transactions` (
   `type` enum('deposit','withdrawal') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Daten für Tabelle `transactions`
---
-
-INSERT INTO `transactions` (`id`, `userId`, `amount`, `date`, `method`, `type`) VALUES
-(1, 2, '100.00', '2022-06-13 19:29:09', 'Paysafe', 'deposit'),
-(2, 2, '25.00', '2022-06-13 19:29:33', 'Neteller', 'withdrawal'),
-(3, 2, '80.00', '2022-06-13 20:10:29', 'Paysafe', 'deposit'),
-(4, 2, '50.00', '2022-06-13 20:10:45', 'Paysafe', 'withdrawal');
-
 -- --------------------------------------------------------
 
 --
@@ -176,13 +158,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Daten für Tabelle `users`
---
-
-INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `firebaseId`, `balance`, `phone`, `country`, `street`, `city`, `zip`) VALUES
-(2, 'da', 'GMEINDER       A             a', '111@111.111', '9vLWrClKqvgjx8nbzKhMWhS9ETm1', '0.00', '+431873614206923', 'Deutschland', 'Gmeinderstrasse 187361b', 'Jule', '42069');
-
---
 -- Indizes der exportierten Tabellen
 --
 
@@ -190,13 +165,15 @@ INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `firebaseId`, `bala
 -- Indizes für die Tabelle `bets`
 --
 ALTER TABLE `bets`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `REL_bets_users` (`userId`);
 
 --
 -- Indizes für die Tabelle `games`
 --
 ALTER TABLE `games`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `REL_games_provider` (`providerId`);
 
 --
 -- Indizes für die Tabelle `provider`
@@ -208,7 +185,8 @@ ALTER TABLE `provider`
 -- Indizes für die Tabelle `transactions`
 --
 ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `REL_transactions_users` (`userId`);
 
 --
 -- Indizes für die Tabelle `users`
@@ -226,7 +204,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `bets`
 --
 ALTER TABLE `bets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT für Tabelle `games`
@@ -244,13 +222,35 @@ ALTER TABLE `provider`
 -- AUTO_INCREMENT für Tabelle `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `bets`
+--
+ALTER TABLE `bets`
+  ADD CONSTRAINT `REL_bets_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+--
+-- Constraints der Tabelle `games`
+--
+ALTER TABLE `games`
+  ADD CONSTRAINT `REL_games_provider` FOREIGN KEY (`providerId`) REFERENCES `provider` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints der Tabelle `transactions`
+--
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `REL_transactions_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

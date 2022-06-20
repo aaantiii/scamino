@@ -85,17 +85,23 @@ label.success {
 
 #page-settings {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-#page-settings>div {
-  margin-bottom: 50px;
+#page-settings>section {
   height: 50px;
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
 
-#page-settings>div>input[type="color"] {
+#page-settings>section:last-child {
+  margin-bottom: 50px;
+}
+
+#page-settings>section>input[type="color"] {
   height: 50px;
   width: 50px;
   padding: 0;
@@ -108,17 +114,18 @@ label.success {
   appearance: none;
 }
 
-#page-settings>div>input[type="color"]::-webkit-color-swatch {
+#page-settings>section>input[type="color"]::-webkit-color-swatch {
   border-radius: 25px;
   border: none;
 }
 
-#page-settings>div>label {
+#page-settings>section>label,
+#page-settings>section>span {
   display: inline-block;
   line-height: 50px;
 }
 
-.reset-theme-button {
+.icon-button {
   width: 50px;
   height: 50px;
   font-size: 1.5em;
@@ -127,8 +134,11 @@ label.success {
   align-items: center;
 }
 
-.reset-theme-button>i {
+.icon-button>i {
+  cursor: pointer;
+}
+
+.icon-button.reset-theme>i {
   transition: transform 250ms linear;
   transform: scaleX(-1);
-  cursor: pointer;
 }

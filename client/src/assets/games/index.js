@@ -1,4 +1,4 @@
-//EXPORT FILE FÜR GAMES
+//EXPORT FILE FÜR ALLE SPIELE
 
 import Roulette from './scamino-roulette'
 

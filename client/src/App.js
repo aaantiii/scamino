@@ -5,13 +5,14 @@ import { AuthProvider } from './components/AuthContext'
 import Dialog from './components/Dialog'
 
 export default function App() {
-  window.refreshTheme = () => {
+  window.reloadTheme = () => {
     const customHexColor = localStorage.getItem('theme-hex')
-    if (customHexColor) {
-      document.querySelector(':root').style.setProperty('--theme-rgb', hexToRgb(customHexColor))
-    }
+  
+    if (customHexColor)
+    document.querySelector(':root').style.setProperty('--theme-rgb', hexToRGB(customHexColor))
   }
-  window.onload = window.refreshTheme
+
+  window.reloadTheme()
 
   return (
     <AuthProvider>
@@ -29,7 +30,7 @@ export default function App() {
   )
 }
 
-function hexToRgb(hex) {
+function hexToRGB(hex) {
   let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   if (result) {
     let r = parseInt(result[1], 16),

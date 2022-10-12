@@ -69,7 +69,7 @@ export default function BetHistory() {
             <tfoot>
               <tr>
                 <th>Gesamt</th>
-                <td>{bet.amount.toFixed(2)} EUR</td>
+                <td>{parseFloat(bet.amount).toFixed(2)} EUR</td>
                 <td></td>
               </tr>
             </tfoot>
@@ -78,11 +78,21 @@ export default function BetHistory() {
             <tbody>
               <tr>
                 <th>Gesamteinsatz:</th>
-                <td>{bet.amount.toFixed(2)} EUR</td>
+                <td>{parseFloat(bet.amount).toFixed(2)} EUR</td>
               </tr>
               <tr>
                 <th>Gewinnbetrag:</th>
-                <td>{bet.win.toFixed(2)} EUR</td>
+                <td>{parseFloat(bet.win).toFixed(2)} EUR</td>
+              </tr>
+              <tr>
+                <th>Nettoergebnis:</th>
+                <td>{(() => {
+                  const nettoResult = bet.win - bet.amount
+
+                  return <span style={ nettoResult === 0 ? {} : { color: nettoResult < 0
+                    ? 'red'
+                    : 'var(--default-green-hex)' }}>{nettoResult.toFixed(2)} EUR</span>
+                })()}</td>
               </tr>
               <tr>
                 <th>Gewinnzahl:</th>

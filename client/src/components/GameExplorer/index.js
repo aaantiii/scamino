@@ -1,10 +1,12 @@
-import { useEffect, useState, useDeferredValue, useMemo } from 'react'
 import './style.css'
+import { useEffect, useState, useDeferredValue, useMemo } from 'react'
 import Axios from 'axios'
 import GameListElement from './GameListElement'
 import { useNavigate } from 'react-router-dom'
 import Input from '../Form/Input'
 import components from '../../assets/lang/components.json'
+
+components.gameExplorer.title = components.gameExplorer.title.toUpperCase()
 
 export default function GameExplorer() {
   const [searchQuery, setSearchQuery] = useState(''),
@@ -17,26 +19,25 @@ export default function GameExplorer() {
   useEffect(() => {
     if (!allGames) return
 
-    if (searchQueryDeferred === '')
+    if (!searchQueryDeferred)
       return setVisibleGames(allGames)
     
     // strongMatching beginnt mit searchQuery, wird dem Nutzer als erstes angezeigt
     // lessMatching hat searchQuery irgendwo im Namen
-    const strongMatchingGames = [],
-          lessMatchingGames = [],
-          sq = searchQueryDeferred.toLowerCase()
+    const strongMatchingGames = []
+    const lessMatchingGames = []
 
     allGames.forEach(game => {
       const gameNameLowercase = game.name.toLowerCase()
       const providerNameLowercase = game.providerName.toLowerCase()
 
-      if (!gameNameLowercase.includes(sq) &&
-          !providerNameLowercase.includes(sq)) return
-        
-      if (gameNameLowercase.startsWith(sq) || providerNameLowercase.startsWith(sq))
-        strongMatchingGames.push(game)
-      else
-        lessMatchingGames.push(game)
+      if (!gameNameLowercase.includes(searchQueryDeferred) && !providerNameLowercase.includes(searchQueryDeferred))
+        return
+      
+      if (gameNameLowercase.startsWith(searchQueryDeferred) || providerNameLowercase.startsWith(searchQueryDeferred))
+        return strongMatchingGames.push(game)
+
+      lessMatchingGames.push(game)
     })
 
     setVisibleGames(strongMatchingGames.concat(lessMatchingGames))
@@ -51,7 +52,7 @@ export default function GameExplorer() {
       setAllGames(res.data)
       setVisibleGames(allGames)
     })
-  }, [setAllGames, allGames, setVisibleGames])
+  }, [allGames, setAllGames, setVisibleGames])
 
   const gameList = useMemo(() => {
     if (!allGames)
@@ -71,8 +72,8 @@ export default function GameExplorer() {
   return (
     <div id="game-explorer">
       <div id="title-row">
-        <h2>{components.gameExplorer.title.toUpperCase()}</h2>
-        <Input key="searchGamesInput" type="search" placeholder="Suchen" onChange={(e) => setSearchQuery(e.target.value.trim())} />
+        <h2>{components.gameExplorer.title}</h2>
+        <Input key="searchGamesInput" type="search" placeholder="Suchen" onChange={e => setSearchQuery(e.target.value.trim().toLowerCase())} />
       </div>
       {gameList}
     </div>

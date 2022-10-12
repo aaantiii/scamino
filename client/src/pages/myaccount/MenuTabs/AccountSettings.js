@@ -125,15 +125,16 @@ export default function AccountSettings() {
     document.querySelector('#roulette-round-duration').value = rouletteRoundDuration
   }, [rouletteRoundDuration])
 
-  function changeRouletteDuration(e) {
-    if (rouletteRoundDuration < 5 || rouletteRoundDuration > 100)
-      return setRouletteRoundDuration(rouletteRoundDuration)
+  function changeRouletteDuration() {
+    setRouletteRoundDuration(rouletteRoundDuration)
+
+    if (rouletteRoundDuration < 5 || rouletteRoundDuration > 100) return
 
     document.querySelector('.icon-button.roulette-round-duration>i').animate([
       { transform: 'scale(1)', color: 'green' },
       { transform: 'scale(1.4)' },
-      { transform: 'scale(1)' }
-    ], { easing: 'linear', duration: 250 })
+      { transform: 'scale(1)' },
+    ], { easing: 'linear', duration: 300 })
 
     setRouletteRoundDuration(rouletteRoundDuration)
     localStorage.setItem('roulette-duration', rouletteRoundDuration)
@@ -145,30 +146,30 @@ export default function AccountSettings() {
         <h2>Persönliche Daten</h2>
         <section className="input-row">
           <Input id="firstName" placeholder="Vorname" minLength={Validator.config.name.minLength} maxLength={Validator.config.name.maxLength}
-                 onChange={(e) => setNewUserInfo({...newUserInfo, firstName: e.target.value.trim()})} />
+                 onChange={e => setNewUserInfo({...newUserInfo, firstName: e.target.value.trim()})} />
           <Input id="lastName" placeholder="Nachname" minLength={Validator.config.name.minLength} maxLength={Validator.config.name.maxLength}
-                 onChange={(e) => setNewUserInfo({...newUserInfo, lastName: e.target.value.trim()})} />
+                 onChange={e => setNewUserInfo({...newUserInfo, lastName: e.target.value.trim()})} />
         </section>
         <section className="input-row">
           <Input id="email" type="email" disabled={true} placeholder="E-Mail" />
           <Input id="phone" type="tel" placeholder="Telefonnummer" pattern="^\+(?:[0-9]●?){8,15}[0-9]$" maxLength="16"
-                 onChange={(e) => setNewUserInfo({...newUserInfo, phone: e.target.value.trim()})} />
+                 onChange={e => setNewUserInfo({...newUserInfo, phone: e.target.value.trim()})} />
         </section>
       </div>
       <div className="form-container">
         <h2>Deine Adresse</h2>
         <section className="input-row">
           <Input id="street" placeholder="Strasse und Hausnummer" pattern="^[ \-a-zA-Z.]+\s+(\d+(\s?\w$)?)" minLength="7" maxLength="50"
-                 onChange={(e) => setNewUserInfo({...newUserInfo, street: e.target.value.trim()})} />
+                 onChange={e => setNewUserInfo({...newUserInfo, street: e.target.value.trim()})} />
           <Select id="country" options={Validator.config.countries} default="Land auswählen"
                   style={{ height: '44px', width: '48%', paddingLeft: '20px', marginBottom: '20px' }}
-                  onChange={(e) => setNewUserInfo({...newUserInfo, country: e.target.value.trim()})}/>
+                  onChange={e => setNewUserInfo({...newUserInfo, country: e.target.value.trim()})}/>
         </section>
         <section className="input-row">
-          <Input id="city" placeholder="Stadt" onChange={(e) => setNewUserInfo({...newUserInfo, city: e.target.value.trim()})}
+          <Input id="city" placeholder="Stadt" onChange={e => setNewUserInfo({...newUserInfo, city: e.target.value.trim()})}
                  minLength={Validator.config.city.minLength} maxLength={Validator.config.city.maxLength} />
           <Input id="zip" placeholder="PLZ" minLength={Validator.config.zip.minLength} maxLength={Validator.config.zip.maxLength}
-                 onChange={(e) => setNewUserInfo({...newUserInfo, zip: e.target.value.trim()})} inputmode="numeric" />
+                 onChange={e => setNewUserInfo({...newUserInfo, zip: e.target.value.trim()})} inputmode="numeric" />
         </section>
       </div>
       <div id="form-footer">

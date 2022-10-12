@@ -5,13 +5,12 @@ import DropdownMenu, { DropdownButton } from './DropdownMenu'
 export default function Elements() {
   const { currentUser, userInfo } = useAuth()
 
-  // Wenn UserInfo geändert wird balance aktualisieren
+  // Wenn userInfo geändert wird, Guthabenanzeige aktualisieren
   useEffect(() => {
     const balanceLabel = document.querySelector('#balance-label')
-    if (balanceLabel && userInfo) {
-      balanceLabel.innerHTML = userInfo.balance.toFixed(2) + ' EUR'
-    } 
-      
+
+    if (balanceLabel && userInfo)
+      balanceLabel.innerHTML = parseFloat(userInfo.balance ?? 0).toFixed(2) + ' EUR'
   }, [userInfo])
 
   // Wenn Benutzer angemeldet ist Menü und Guthaben anzeigen

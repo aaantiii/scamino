@@ -53,7 +53,7 @@ function animateSpin(roll, win) {
       wheel.style.transform = `translateX(-${transformX}px)`
       resolve({ win })
     })
-    animation.addEventListener('cancel', () => reject())
+    animation.addEventListener('cancel', reject)
   })
-  .catch(err => console.log(err))
+  .catch(console.log)
 }

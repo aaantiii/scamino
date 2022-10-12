@@ -40,8 +40,9 @@ button.show-more {
 
 #more-info-tab>.title-bar>button.show-more {
   width: fit-content;
-  border: none;
+  border: none !important;
   padding: 5px;
+  outline: none !important;
 }
 
 .bet-info {

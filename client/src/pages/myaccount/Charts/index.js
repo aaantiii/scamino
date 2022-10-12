@@ -10,7 +10,7 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 CanvasJS.addColorSet('green-red', ['#009600', '#cc1010'])
 
-function getChartDefaultOptions() {
+function getDefaultChartOptions() {
   return {
     title: {
       fontFamily: 'Open Sans',
@@ -47,7 +47,7 @@ export default function Charts() {
     .then(res => {
       if (!res.data.success)
         return setError(server.error.noResponse)
-      
+
       setData(res.data)
     })
     .catch(() => setError(`${server.error.unknown} ${server.error.retry}`))
@@ -59,45 +59,49 @@ export default function Charts() {
     let stakes = 0
 
     data.bets.forEach(bet => {
-      wins += bet.win
-      stakes += bet.amount
+      wins += parseFloat(bet.win)
+      stakes += parseFloat(bet.amount)
     })
 
-    const options = getChartDefaultOptions()
+    const options = getDefaultChartOptions()
+
     options.data = [{
       type: 'column',
       dataPoints: [
-        { label: 'Gewinne', y: wins },
-        { label: 'Einsätze', y: stakes }
+        { label: 'Gewinne', y: parseFloat(wins) },
+        { label: 'Einsätze', y: parseFloat(stakes) }
       ],
-      yValueFormatString: "€ #,##0.00"
+      yValueFormatString: '€ #,##0.00'
     }]
     options.title.text = 'Gewinne und Einsätze'
 
     return options
   }
 
-  // Datenobjekt für Einzahlungen und Auszahlungen Diagramm erstellen
+  // Objekt zum Erstellen von Einzahlungen und Auszahlungen Diagramm
   function getTransactionChartOptions() {
-    let deposits = 0
-    let withdrawals = 0
+    let deposits = 0, withdrawals = 0
 
     data.transactions.forEach(transaction => {
       transaction.type === 'deposit'
-        ? deposits += transaction.amount
-        : withdrawals += transaction.amount 
+        ? deposits += parseFloat(transaction.amount)
+        : withdrawals += parseFloat(transaction.amount) 
     })
 
-    const options = getChartDefaultOptions()
+    const options = getDefaultChartOptions()
+
     options.data = [{
       type: 'column',
       dataPoints: [
-        { label: 'Ausgänge', y: withdrawals },
-        { label: 'Eingänge', y: deposits }
+        { label: 'Ausgänge', y: parseFloat(withdrawals) },
+        { label: 'Eingänge', y: parseFloat(deposits) }
       ],
-      yValueFormatString: "€ #,##0.00"
+      yValueFormatString: '€ #,##0.00'
     }]
+
     options.title.text = 'Ein- und Auszahlungen'
+
+    console.log(options)
     return options
   }
 

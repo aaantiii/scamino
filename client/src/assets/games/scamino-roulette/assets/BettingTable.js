@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../../../components/AuthContext'
 import lang from './lang.json'
 
-export var bets = []
+export let bets = []
 export function clearBets() {
   bets = []
 }
@@ -57,9 +57,9 @@ export default function BettingTable() {
 
   // Wird ausgelöst wenn mit Coin auf Nummer geklickt wird
   function addBet(tip) {
-    if (!stake || !userInfo)
+    if (!stake)
       return setMessage(lang.bet.chooseStake)
-    if (userInfo.balance - stake.value < 0)
+    if (!userInfo || userInfo.balance - stake.value < 0)
       return setMessage(lang.bet.balanceTooLow)
 
     let totalBetAmount = 0

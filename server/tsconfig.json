@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./lib"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "ES2022"
+  }
+}

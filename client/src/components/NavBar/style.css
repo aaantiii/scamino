@@ -126,7 +126,7 @@ ul {
   height: 30px;
   display: flex;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 0.5rem;
   user-select: none;
   transition: background-color .5s;
